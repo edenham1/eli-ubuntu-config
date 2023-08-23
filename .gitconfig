@@ -1,0 +1,9 @@
+[user]
+	email = edenham@amd.com
+	name = edenham
+[core]
+	editor = nvim
+[merge]
+	tool = nvimdiff
+[mergetool "nvimdiff"]
+	cmd = nvim -d $MERGED $BASE $LOCAL $REMOTE -c \"$wincmd w\" -c \"wincmd J\"
