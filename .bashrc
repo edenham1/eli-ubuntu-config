@@ -96,6 +96,7 @@ alias l='ls -CF'
 # alias nvim
 alias vim='nvim'
 alias vi='nvim'
+alias vimdiff='nvim -d'
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -120,9 +121,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-source ~/.cache/dein/repos/github.com/morhetz/gruvbox/gruvbox_256palette.sh
-
-# For pyenv
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
+source ~/.local/share/dein/repos/github.com/morhetz/gruvbox/gruvbox_256palette.sh
