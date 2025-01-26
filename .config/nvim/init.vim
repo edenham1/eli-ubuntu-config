@@ -52,6 +52,7 @@ call dein#add('nvim-tree/nvim-web-devicons')
 call dein#add('onsails/lspkind-nvim')
 call dein#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
 call dein#add('f-person/git-blame.nvim')
+call dein#add('github/copilot.vim')
 
 " Finish Dein initialization (required)
 call dein#end()

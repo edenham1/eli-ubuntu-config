@@ -136,3 +136,7 @@ gsettings set org.gnome.mutter.keybindings toggle-tiled-right '["<Control><Alt>R
 
 
 source ~/.local/share/dein/repos/github.com/morhetz/gruvbox/gruvbox_256palette.sh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
