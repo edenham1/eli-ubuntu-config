@@ -36,6 +36,7 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
 fi
 
 export TERM=xterm-256color
+
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color|*-256color) color_prompt=yes;;
@@ -57,8 +58,10 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+source $HOME/src/eli-ubuntu-config/git-prompt.sh
+
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\[\033[0;36m\]$(__git_ps1 " (%s)")\n\[\033[38;5;106m\][\t \d]\[\033[0m\] \$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -121,4 +124,15 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+# Change ctrl to cmd key to match macOS
+# setxkbmap -option ctrl:swap_lwin_lctl
+
+# Try to set key mapping for snap window Left/Right
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-left '["<Control>Left"]'
+gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-right '["<Control>Right"]'
+gsettings set org.gnome.mutter.keybindings toggle-tiled-left '["<Control><Alt>Left"]'
+gsettings set org.gnome.mutter.keybindings toggle-tiled-right '["<Control><Alt>Right"]'
+
+
 source ~/.local/share/dein/repos/github.com/morhetz/gruvbox/gruvbox_256palette.sh
