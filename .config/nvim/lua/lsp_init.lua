@@ -107,7 +107,7 @@ saga.setup({
 })
 local treesitter = require('nvim-treesitter.configs')
 treesitter.setup {
-    ensure_installed = { "c", "cpp", "python", "markdown", "bash" }, -- install language parsers.
+    ensure_installed = { "c", "cpp", "python", "markdown", "bash", "lua", "vim" }, -- install language parsers.
     highlight = {
         enable = true,
     },
@@ -119,7 +119,7 @@ gitblame.setup({
     enable=true,
     message_template = " <summary> * <date> * <author> * <<sha>>",
     date_format = "%m-%d-%Y %H:%M:%S",
-}
+})
 
 -- marksman setup
 lspconfig.marksman.setup{}

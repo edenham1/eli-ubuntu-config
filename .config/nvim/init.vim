@@ -126,7 +126,7 @@ if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
         let $NVIM_TUI_ENABLE_TRUE_COLOR=1
     endif
     if (has("termguicolors"))
-        "set termguicolors
+        set termguicolors
     endif
 endif
 
@@ -139,3 +139,4 @@ if dein#check_install()
 endif
 
 " TODO: LUA LSP Config
+lua require("lsp_init")
