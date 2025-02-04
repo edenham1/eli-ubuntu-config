@@ -144,6 +144,9 @@ export NVM_DIR="$HOME/.nvm"
 # Add poetry to PATH
 export PATH="/home/eli/.local/bin:$PATH"
 
+# Add nvim to path
+export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
+
 # Add pyenv to PATH
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"

@@ -32,46 +32,68 @@ lspconfig.efm.setup({
     on_attach = on_attach,
     init_optinos = {documentFormatting = true},
     settings = { 
-        logLevel = 1,
+        logLevel = 3,
         rootMarkers = {".git/"},
         languages = {
             python = {
-                lintCommand = "pylint --output-format text --score no --msg-temjplate {path}:{line}:{column}:{C}:{msg} ${INPUT}",
-                lintStdin = false,
-                lintFormats = {'%f:%l:%c:%t:%m'},
-                lintOffsetColumns = 1,
-                lintCategoryMap = {
-                    I = "H",
-                    R = "I",
-                    C = "I",
-                    W = "W",
-                    E = "E",
-                    F = "E",
+                {
+                    lintCommand = "pylint --output-format text --score no --msg-template {path}:{line}:{column}:{C}:{msg} ${INPUT}",
+                    lintStdin = false,
+                    lintFormats = {'%f:%l:%c:%t:%m'},
+                    lintOffsetColumns = 1,
+                    lintCategoryMap = {
+                        I = "H",
+                        R = "I",
+                        C = "I",
+                        W = "W",
+                        E = "E",
+                        F = "E",
+                    },
+                },
+                {
+                    lintCommand = "flake8 --stdin-display-name ${INPUT} -",
+                    lintIgnoreExitCode = true,
+                    lintStdin = true,
+                    lintFormats = {"%s:%l:%c: %m"},
+                },
+                {
+                    formatCommand = "black --fast -",
+                    formatStdin = true,
+                },
+                {
+                    formatCommand = "isort --quiet -",
+                    formatStdin = true,
                 },
             },
-            {
-                lintCommand = "flake8 --stdin-display-name ${INPUT} -",
-                lintIgnoreExitCode = true,
-                lintStdin = true,
-                lintFormats = {"%s:%l:%c: %m"},
+            cpp = {
+                {
+                    formatCommand = "clang-format -style=Google",
+                    formatStdin = true,
+                },
             },
-            {
-                formatCommand = "black --fast -",
-                formatStdin = true,
+            javascript = {
+                {
+                    lintCommand = "npx eslint --stdin --stdin-filename ${INPUT}",
+                    lintIgnoreExitCode = true,
+                    formatStdin = true,
+                    lintFormats = {"%f:%l:%c: %m"},
+                },
+                {
+                    formatCommand = "prettierd --stdin-filepath ${INPUT}",
+                    lintIgnoreExitCode = true,
+                    formatStdin = true,
+                },
             },
-            {
-                formatCommand = "isort --quite -",
-                formatStdin = true,
-            },
-        },
-        cpp = {
-            {
-                formatCommand = "clang-format -style=Google",
-                formatStdin = true,
+            markdown = {
+                {
+                    lintCommand = "markdownlint -s",
+                    lintStdin = true,
+                    lintFormats = {"%f:%l %m", "%f:%l:%c %m", "%f: %l: %m"},
+                },
             },
         },
     },
-    filetypes = {"python", "cpp"}
+    filetypes = {"python", "cpp", "markdown", "javascript"},
 })
 
 -- Autocompletion setup
@@ -79,7 +101,7 @@ local cmp = require("cmp")
 cmp.setup({
     snippet = {
         expand = function(args)
-            require('luasnip').lsp_expand(arg.body)
+            require("luasnip").lsp_expand(arg.body)
         end,
     },
     mapping = cmp.mapping.preset.insert({
@@ -101,13 +123,13 @@ cmp.setup({
 })
 
 -- LSP UI enhancements
-local saga = require('lspsaga')
+local saga = require("lspsaga")
 saga.setup({
     border_style = "round"
 })
-local treesitter = require('nvim-treesitter.configs')
+local treesitter = require("nvim-treesitter.configs")
 treesitter.setup {
-    ensure_installed = { "c", "cpp", "python", "markdown", "bash", "lua", "vim" }, -- install language parsers.
+    ensure_installed = { "c", "cpp", "python", "bash", "javascript", "lua", "vim" }, -- install language parsers.
     highlight = {
         enable = true,
     },
@@ -131,6 +153,9 @@ augroup LspFormatting
     autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ async = true })
 augroup END
 ]]
+
+-- prevent flickering
+vim.opt.signcolumn = "yes"
 
 --Rename command
 vim.api.nvim_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', {noremap=true, silent=true })

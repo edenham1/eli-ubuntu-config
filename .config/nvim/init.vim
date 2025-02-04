@@ -41,16 +41,18 @@ call dein#add('morhetz/gruvbox')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('vim-airline/vim-airline')
 call dein#add('tpope/vim-obsession')
+call dein#add('dhruvasagar/vim-prosession')
 call dein#add('neovim/nvim-lspconfig')
 call dein#add('hrsh7th/nvim-cmp')
 call dein#add('hrsh7th/cmp-nvim-lsp')
 " Markdown LSP
 call dein#add('artempyanykh/marksman')
 call dein#add('L3MON4D3/LuaSnip')
-call dein#add('glepnir/lspsaga.nvim')
 call dein#add('nvim-tree/nvim-web-devicons')
 call dein#add('onsails/lspkind-nvim')
 call dein#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
+" call dein#add('nvim-treesitter/tree-sitter-markdown')
+call dein#add('nvimdev/lspsaga.nvim')
 call dein#add('f-person/git-blame.nvim')
 call dein#add('github/copilot.vim')
 
@@ -113,6 +115,9 @@ set tabstop=8 softtabstop=8
 " Turn on spell checking
 :setlocal spell spelllang=en_us
 
+let g:prosession_dir = expand('~/.tmp_vim/session')
+" Obsession
+let g:airline#extensions#obsession#enabled = 1
 " Color Scheme
 let g:airline_theme='gruvbox'
 " set background=light
@@ -130,13 +135,17 @@ if (empty($TMUX) && getenv('TERM_PROGRAM') != 'Apple_Terminal')
     endif
 endif
 
-colorscheme gruvbox
 
+colorscheme gruvbox
 
 " Uncomment if you want to install not-installed plugins on startup.
 if dein#check_install()
  call dein#install()
 endif
 
-" TODO: LUA LSP Config
+" LSP actions
+nnoremap gd <cmd>lua vim.lsp.buf.definition()<CR>
+nnoremap gr <cmd>lua vim.lsp.buf.references()<CR>
+nnoremap K <cmd>lua vim.lsp.buf.hover()<CR>
+
 lua require("lsp_init")
