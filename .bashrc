@@ -151,3 +151,6 @@ export PATH="/opt/nvim-linux-x86_64/bin:$PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init - bash)"
+
+# export my keyboard repo path
+export MY_KEYBOARDS_PATH="/home/eli/src/keyboard-firmware"
