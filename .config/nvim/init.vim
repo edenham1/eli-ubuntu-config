@@ -55,6 +55,7 @@ call dein#add('nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'})
 call dein#add('nvimdev/lspsaga.nvim')
 call dein#add('f-person/git-blame.nvim')
 call dein#add('github/copilot.vim')
+call dein#add('mechatroner/rainbow_csv')
 
 " Finish Dein initialization (required)
 call dein#end()
