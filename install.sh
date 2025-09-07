@@ -18,3 +18,5 @@ ln -s -v -f $script_dir/.tmux.conf ~/.tmux.conf
 ln -s -v -f $script_dir/.qmk ~/.qmk
 
 ln -s -v -f $script_dir/.gitconfig ~/.gitconfig
+
+ln -s -v -f $script_dir/etc/keyd/default.conf /etc/keyd/default.conf
