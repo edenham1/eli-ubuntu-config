@@ -6,7 +6,7 @@ script_dir=$(dirname "$(realpath "$0")")
 
 ln -s -v -f $script_dir/.bashrc ~/.bashrc
 
-mkdir -p ~/.config/nvim/lua
+mkdir -p ~/.config/nvim
 mkdir -p ~/.config/efm-langserver
 mkdir -p ~/.qmk
 
