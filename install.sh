@@ -16,3 +16,5 @@ ln -s -v -f $script_dir/.config/efm-langserver/config.yaml ~/.config/efm-langser
 
 ln -s -v -f $script_dir/.tmux.conf ~/.tmux.conf
 ln -s -v -f $script_dir/.qmk ~/.qmk
+
+ln -s -v -f $script_dir/.gitconfig ~/.gitconfig
