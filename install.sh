@@ -20,3 +20,4 @@ ln -s -v -f $script_dir/.qmk ~/.qmk
 ln -s -v -f $script_dir/.gitconfig ~/.gitconfig
 
 ln -s -v -f $script_dir/etc/keyd/default.conf /etc/keyd/default.conf
+ln -s -v -f $script_dir/etc/nix/nix.conf /etc/nix/nix.conf
